@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!--
+  robot_arm_5axis_centric.urdf   (v2)
+
+  링크 길이 검증 완료 (DH modified/Craig 표와 오차 ~1e-16)
+    joint3 origin z = 0.195   (joint2 -> joint3)
+    joint4 origin z = 0.165   (joint3 -> joint4)
+    TCP 오프셋       = 0.087 + 0.1245 = 0.2115  (joint5 회전축 위)
+
+  home(모든 관절 0):
+    TCP = (-0.0945, 0, 0.7665),  TCP z축 = [0, 0, 1]
+    어깨(joint2) = (-0.0945, 0, 0.195),  최대 도달반경 0.5715 m
+
+  <limit> lower/upper 는 아직 임시값(±3.14).
+  관절 한계각이 정해지면 아래 3곳을 같은 값으로 맞출 것:
+    1) 이 파일의 <limit>
+    2) kinematics_ee_5axis.py 의 Q_MIN / Q_MAX
+    3) 경로검사(path_collision_guard_ee_5axis.py) 쪽 검사값
+
+  mesh filename 은 "robot_meshes/..." 상대경로.
+  실행 노드가 mesh_dir 파라미터로 절대경로 치환한다.
+-->
+<robot name="robot_arm_5axis_centric">
+
+  <!-- ===== LINKS ===== -->
+  <link name="link1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/link1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/link2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/link3.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link4">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/link4.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link5">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/link5.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="centric">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/centric.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- 형상 없는 TCP 프레임 -->
+  <link name="centric_end"/>
+
+  <!-- ===== JOINTS ===== -->
+
+  <!-- base 회전 -->
+  <joint name="joint1" type="revolute">
+    <parent link="link1"/><child link="link2"/>
+    <origin xyz="-0.0945 0 0.105" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <!-- 사이클로이드 감속기 (dxl dir = -1) -->
+  <joint name="joint2" type="revolute">
+    <parent link="link2"/><child link="link3"/>
+    <origin xyz="0 0 0.09" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <!-- L2 = 0.195 -->
+  <joint name="joint3" type="revolute">
+    <parent link="link3"/><child link="link4"/>
+    <origin xyz="0 0 0.195" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <!-- L3 = 0.165 -->
+  <joint name="joint4" type="revolute">
+    <parent link="link4"/><child link="link5"/>
+    <origin xyz="0 0 0.165" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <!-- 그리퍼 회전. 이 축 위에 TCP가 놓이므로 q5는 TCP 위치를 바꾸지 않음 -->
+  <joint name="joint5" type="revolute">
+    <parent link="link5"/><child link="centric"/>
+    <origin xyz="0 0 0.087" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <!-- 고정 TCP.  0.087 + 0.1245 = 0.2115 -->
+  <joint name="centric_fixed" type="fixed">
+    <parent link="centric"/><child link="centric_end"/>
+    <origin xyz="0 0 0.1245" rpy="0 0 0"/>
+  </joint>
+
+</robot>

@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!--
+  robot_arm_5axis_rail_suction.urdf
+  기존 5축 팔 + 리니어 레일(prismatic joint_rail, Y축, 0~0.9 m).
+
+  레일 제원: 1600 PPR, 리드 10 mm -> 1 m = 100회전 = 160,000 스텝 (500 RPM 에서 12.0 s)
+  base link 가 link1 -> rail 로 바뀌었으므로 PyBullet 관절 인덱스가 하나 밀린다.
+  충돌검사는 팔 전용 URDF(robot_arm_5axis_suction.urdf)를 그대로 쓴다.
+-->
+<robot name="robot_arm_5axis_rail_suction">
+
+  <link name="rail">
+    <visual>
+      <origin xyz="0 0 0.035" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/rail.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/link1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/link2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/link3.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link4">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/link4.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link5">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/link5.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="suction">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="robot_meshes/suction.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="suction_end"/>
+
+  <!-- ===== JOINTS ===== -->
+
+<joint name="joint_rail" type="prismatic">
+    <origin xyz="0.0125 0.09455 0.008" rpy="0 0 0"/>
+    <parent link="rail"/><child link="link1"/>
+    <axis xyz="0 1 0"/> <!-- Y축 방향으로 이동 -->
+    <limit lower="0.0" upper="0.9" effort="100.0" velocity="5.0"/>
+</joint>
+
+  <joint name="joint1" type="revolute">
+    <parent link="link1"/><child link="link2"/>
+    <origin xyz="-0.0945 0 0.105" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <joint name="joint2" type="revolute">
+    <parent link="link2"/><child link="link3"/>
+    <origin xyz="0 0 0.09" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <joint name="joint3" type="revolute">
+    <parent link="link3"/><child link="link4"/>
+    <origin xyz="0 0 0.195" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <joint name="joint4" type="revolute">
+    <parent link="link4"/><child link="link5"/>
+    <origin xyz="0 0 0.165" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <joint name="joint5" type="revolute">
+    <parent link="link5"/><child link="suction"/>
+    <origin xyz="0 0 0.087" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <joint name="suction_fixed" type="fixed">
+    <parent link="suction"/><child link="suction_end"/>
+    <origin xyz="0 0 0.1245" rpy="0 0 0"/>
+  </joint>
+
+</robot>
