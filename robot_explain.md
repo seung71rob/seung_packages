@@ -12,8 +12,8 @@
 -> baseplate 검사 공정 -> baseplate 조립 공정 -> 뚜껑 조립 공정 
 이 워크스페이스에 담겨져있는 코드는 (baseplate 검사 공정, 뚜껑 조립 공정입니다.)
 
-   로봇팔의 이동자세는 다음과 같습니다
-   (0, 50, -50, -95), q1~q4 순서대로 명시
+로봇팔의 이동자세는 다음과 같습니다
+(0, 50, -50, -95), q1~q4 순서대로 명시
    
    1.1 Baseplate 공정
    Baseplate의 불량을 검출하는 과정
@@ -118,8 +118,6 @@
 
       2.3 아두이노 코드
       스텝모터를 제어하는 코드는 robot_sim/src/robot_description 에 위치한 rail_stepmotor_mega_scurve.ino 입니다.
-
-      3.1 baseplate 공정 코드 구조 설명 (gpt)
       
       
       
