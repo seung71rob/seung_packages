@@ -1,0 +1,64 @@
+ .gitignore                                         |    8 [32m+[m
+ B_arm_v2_tolerance_1.py                            | 1161 [32m+++++++++++++[m
+ Baseplate_side_wonseok_2.py                        |  738 [32m++++++++[m
+ Baseplate_top.py                                   |  770 [32m+++++++++[m
+ baseplate_hole_wonseok.py                          | 1544 [32m+++++++++++++++++[m
+ best_Baseplate_hole.pt                             |  Bin [31m0[m -> [32m6269610[m bytes
+ bottom.pt                                          |  Bin [31m0[m -> [32m6793524[m bytes
+ flash.pt                                           |  Bin [31m0[m -> [32m6843764[m bytes
+ side.pt                                            |  Bin [31m0[m -> [32m6835636[m bytes
+ .../meshes_robot_5axis/centric.stl                 |  Bin [31m0[m -> [32m1258384[m bytes
+ src/robot_description/meshes_robot_5axis/link1.stl |  Bin [31m0[m -> [32m3592684[m bytes
+ src/robot_description/meshes_robot_5axis/link2.stl |  Bin [31m0[m -> [32m8090684[m bytes
+ src/robot_description/meshes_robot_5axis/link3.stl |  Bin [31m0[m -> [32m3652584[m bytes
+ src/robot_description/meshes_robot_5axis/link4.stl |  Bin [31m0[m -> [32m3276184[m bytes
+ src/robot_description/meshes_robot_5axis/link5.stl |  Bin [31m0[m -> [32m767384[m bytes
+ src/robot_description/meshes_robot_5axis/rail.stl  |  Bin [31m0[m -> [32m6002284[m bytes
+ .../meshes_robot_5axis/suction.stl                 |  Bin [31m0[m -> [32m604084[m bytes
+ src/robot_description/package.xml                  |   18 [32m+[m
+ .../rail_stepmotor_mega_scurve.ino                 |  367 [32m++++[m
+ src/robot_description/resource/robot_description   |    0
+ .../robot_description/__init__.py                  |    0
+ .../robot_description/dxl_bridge_suction_5axis.py  |  172 [32m++[m
+ .../robot_description/kinematics_ee_5axis.py       |  442 [32m+++++[m
+ .../robot_description/old/centric_gripper_5axis.py |  799 [32m+++++++++[m
+ .../old/centric_sequence_5axis.py                  |  893 [32m++++++++++[m
+ .../robot_description/old/dxl_bridge_5axis.py      |  160 [32m++[m
+ .../old/dxl_bridge_centric_5axis.py                |  454 [32m+++++[m
+ .../old/ik_execute_centric_5axis.py                |  280 [32m++++[m
+ .../robot_description/old/ik_execute_node_5axis.py |  232 [32m+++[m
+ .../old/ik_execute_rail_centric_5axis.py           |  800 [32m+++++++++[m
+ .../old/ik_execute_rail_suction_5axis.py           |  847 [32m++++++++++[m
+ .../old/ik_execute_rail_vision_centric_5axis.py    |  943 [32m+++++++++++[m
+ .../old/ik_execute_rail_vision_suction_5axis.py    | 1759 [32m++++++++++++++++++++[m
+ .../old/ik_execute_suction_5axis.py                |  280 [32m++++[m
+ .../robot_description/old/ik_fix_pybullet_node.py  |  136 [32m++[m
+ .../robot_description/old/ik_path_node_5axis.py    |  145 [32m++[m
+ .../robot_description/old/ik_pybullet_node.py      |  139 [32m++[m
+ .../old/ik_pybullet_node_5axis.py                  |  124 [32m++[m
+ .../old/joint_limit_check_5axis.py                 |  106 [32m++[m
+ .../robot_description/old/kinematics.py            |  152 [32m++[m
+ .../robot_description/old/kinematics_5axis.py      |   91 [32m+[m
+ .../robot_description/old/kinematics_fix.py        |   13 [32m+[m
+ .../old/motion_execute_node_5axis.py               |  219 [32m+++[m
+ .../old/path_collision_guard_5axis.py              |  107 [32m++[m
+ .../path_collision_guard_ee_5axis.py               |   84 [32m+[m
+ .../robot_description/process_sequence_5axis.py    | 1315 [32m+++++++++++++++[m
+ .../robot_description/rail_serial_5axis.py         |  280 [32m++++[m
+ .../robot_description/suction_sequence_5axis.py    | 1022 [32m++++++++++++[m
+ .../robot_description/trajectory_5axis.py          |   44 [32m+[m
+ .../robot_description/vertical_path_5axis.py       |  682 [32m++++++++[m
+ src/robot_description/setup.cfg                    |    4 [32m+[m
+ src/robot_description/setup.py                     |   74 [32m+[m
+ .../urdf/1111/robot_arm_5axis_centric.urdf         |  167 [32m++[m
+ .../urdf/1111/robot_arm_5axis_suction.urdf         |  167 [32m++[m
+ .../urdf/22222/robot_arm_5axis_centric.urdf        |  131 [32m++[m
+ .../urdf/22222/robot_arm_5axis_suction.urdf        |  131 [32m++[m
+ src/robot_description/urdf/robot_arm.urdf          |  116 [32m++[m
+ src/robot_description/urdf/robot_arm_5axis.urdf    |   97 [32m++[m
+ .../urdf/robot_arm_5axis_centric.urdf              |  131 [32m++[m
+ .../urdf/robot_arm_5axis_rail_centric.urdf         |  126 [32m++[m
+ .../urdf/robot_arm_5axis_rail_suction.urdf         |  126 [32m++[m
+ .../urdf/robot_arm_5axis_suction.urdf              |  131 [32m++[m
+ top.pt                                             |  Bin [31m0[m -> [32m6823604[m bytes
+ 63 files changed, 18727 insertions(+)
